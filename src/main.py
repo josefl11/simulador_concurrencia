@@ -14,9 +14,9 @@ def usuario(nombre, texto):
     print(f"{nombre} terminó de escribir.\n")
 
 # hilos para cada usuario
-personaA = threading.Thread(target=usuario, args=("Sebastian", "Los beneficios de jugar básquet"))
-personaB = threading.Thread(target=usuario, args=("Carla", "Amo los gatos porque son tiernos"))
-personaC = threading.Thread(target=usuario, args=("Stiven", "Hola a todas las personas del mundo"))
+personaA = threading.Thread(target=usuario, args=("Sebastian", "me gusta jugar básquet"))
+personaB = threading.Thread(target=usuario, args=("Carla", "Amo los gatos"))
+personaC = threading.Thread(target=usuario, args=("Stiven", "Hola para todos"))
 
 # iniciamos los hilos
 personaA.start()
