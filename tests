@@ -1,1 +1,10 @@
+import unittest
+from src.main import documento
 
+class TestDocumento(unittest.TestCase):
+
+    def test_no_vacio(self):
+        self.assertNotEqual(documento, "")
+
+if __name__ == "__main__":
+    unittest.main()
