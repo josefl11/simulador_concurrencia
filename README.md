@@ -1,8 +1,13 @@
 # Simulador de concurrencia
-Proyecto de demostración de concurrencia en un documento compartido
+Simulación de edición de un documento compartido en tiempo real
 
-# Integrantes
--Jose Fernando Florian Alfaro
+## Integrantes
+Jose Fernando Florian Alfaro
 
-# lenguaje 
+## lenguaje 
 python 3   
+
+## Estructura del proyecto
+- `src` → Contiene el código principal (`main.py`)
+- `docs` → Documentación del proyecto
+- `tests` → Pruebas del proyecto
