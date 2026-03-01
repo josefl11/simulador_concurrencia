@@ -2,12 +2,13 @@ import threading # hilos de usuarios
 import time # tiempo real de escritura
 
 documento = ""  # documento compartido
-
+lock=threading.Lock() # asegura que un solo hilo se ejecute en el momento dado
 def usuario(nombre, texto):
     global documento
     for letra in texto:
-        documento += letra
-        print(f"{nombre} escribió: {letra}")
+        with lock:
+            documento += letra
+            print(f"{nombre} escribió: {letra}")
         time.sleep(0.2)
     print(f"\n'{nombre} terminó de escribir'.\n")
 
