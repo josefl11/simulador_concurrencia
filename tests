@@ -2,10 +2,12 @@ import threading
 import time
 
 documento = ""
+lock = threading.Lock() #permite que solo un hilo se ejecute en ese momento
 
 def usuario(nombre, texto):
     global documento
     for letra in texto:
+        with lock: 
             documento += letra
             print(f"{nombre} escribió: {letra}")
         time.sleep(0.2)
