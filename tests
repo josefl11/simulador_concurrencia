@@ -30,6 +30,6 @@ print("\nDocumento final con Lock:", documento)
 total_esperado = len("hamo") + len("o_is") + len("lag")
 
 if len(documento) == total_esperado:
-    print("el documento cumple con el limite de caracteres")
+    print("\nEl dumento cumple con el limite de caracteres")
 else:
-    print("no cumple el limite de caracteres")
+    print("\nno cumple el limite de caracteres")
