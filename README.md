@@ -6,5 +6,3 @@ Proyecto de demostración de concurrencia en un documento compartido
 
 #lenguaje 
 python 3
-
-
