@@ -1,10 +1,30 @@
-import unittest
-from src.main import documento
+import threading
+import time
 
-class TestDocumento(unittest.TestCase):
+documento = ""
+lock = threading.Lock()
 
-    def test_no_vacio(self):
-        self.assertNotEqual(documento, "")
+def usuario(nombre, texto):
+    global documento
+    for letra in texto:
+        with lock:  # sección crítica protegida
+            documento += letra
+            print(f"{nombre} escribió: {letra}")
+        time.sleep(0.2)
 
-if __name__ == "__main__":
-    unittest.main()
+personaA = threading.Thread(target=usuario, args=("Sebastian", "Me"))
+personaB = threading.Thread(target=usuario, args=("Carla", "Amo"))
+personaC = threading.Thread(target=usuario, args=("Stiven", "Hola"))
+
+personaA.start()
+personaB.start()
+personaC.start()
+
+personaA.join()
+personaB.join()
+personaC.join()
+
+print("\nDocumento final con Lock:", documento)
+for i in range(3):
+    print(f"\nEjecución {i+1}")
+    # ejecutar hilos
