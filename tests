@@ -26,3 +26,6 @@ personaC.join()
 
 print("\nDocumento final con Lock:", documento)
 
+for letra in texto:
+            documento += letra
+            print(nombre)
