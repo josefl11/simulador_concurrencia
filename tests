@@ -13,7 +13,7 @@ def usuario(nombre, texto):
         time.sleep(0.2)
 
 personaA = threading.Thread(target=usuario, args=("Sebastian", "hais"))
-personaB = threading.Thread(target=usuario, args=("Carla", "oag"))
+personaB = threading.Thread(target=usuario, args=("Carla", "o_ag"))
 personaC = threading.Thread(target=usuario, args=("Stiven", "lmo"))
 
 personaA.start()
@@ -26,6 +26,7 @@ personaC.join()
 
 print("\nDocumento final con Lock:", documento)
 
-for letra in texto:
-            documento += letra
-            print(nombre)
+if len(documento) == 10:
+    print("el documento cumple con el limite de caracteres")
+else:
+    print("no cumple el limite de caracteres")
