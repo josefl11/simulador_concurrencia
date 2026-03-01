@@ -1,21 +1,19 @@
-import threading
-import time
+import threading # hilos de usuarios
+import time # tiempo real de escritura
 
 documento = ""  # documento compartido
-lock = threading.Lock()  # bloquea para que un hilo escriba a la vez
 
 def usuario(nombre, texto):
     global documento
     for letra in texto:
-        with lock:  # asegura que solo un usuario escriba en este momento
-            documento += letra
-            print(f"{nombre} escribió: {letra}")
+        documento += letra
+        print(f"{nombre} escribió: {letra}")
         time.sleep(0.2)
-    print(f"{nombre} terminó de escribir.\n")
+    print(f"\n'{nombre} terminó de escribir'.\n")
 
 # hilos para cada usuario
-personaA = threading.Thread(target=usuario, args=("Sebastian", "me gusta jugar básquet"))
-personaB = threading.Thread(target=usuario, args=("Carla", "Amo los gatos"))
+personaA = threading.Thread(target=usuario, args=("Sebastian", "Me gusta jugar básquet"))
+personaB = threading.Thread(target=usuario, args=("Carla", "Amo a los gatos"))
 personaC = threading.Thread(target=usuario, args=("Stiven", "Hola para todos"))
 
 # iniciamos los hilos
