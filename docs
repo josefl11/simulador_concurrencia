@@ -1,16 +1,12 @@
 # Documentación – Simulador de Documento Compartido en tiempo real
 
 ## Objetivo
-
-El objetivo de este proyecto es simular la edición concurrente de un documento compartido utilizando hilos en Python.
-
-Se busca demostrar cómo varios usuarios pueden escribir al mismo tiempo sobre un mismo recurso compartido.
+Simular la edición concurrente de un documento compartido utilizando hilos en el lenguaje Python.
+Demostrar cómo varios usuarios pueden escribir al mismo tiempo sobre un mismo recurso compartido.
 
 ## Descripción del funcionamiento
-
-El programa crea una variable global llamada documento, que representa el archivo compartido.
-
-Cada usuario es representado por un hilo (threading.Thread).
+El programa crea una variable global llamada documento, la cual sera nuestro archivo compartido.
+Cada usuario editor del documento se representa por un hilo (threading.Thread).
 
 Cada hilo ejecuta la función usuario(nombre, texto), que:
 
