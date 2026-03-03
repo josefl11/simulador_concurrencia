@@ -12,7 +12,7 @@ Cada hilo ejecuta la función usuario(nombre, texto), que:
 - Recorre el texto letra por letra.
 - Agrega cada letra al documento compartido.
 - Muestra en pantalla qué usuario escribió cada letra.
-- Simulación de tiempo real cpm time.sleep().
+- Simulación de tiempo real com time.sleep().
 
 Debido a que los hilos se ejecutan de manera concurrente, el texto final puede aparecer mezclado.
 
