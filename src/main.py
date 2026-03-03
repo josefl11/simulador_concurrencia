@@ -28,3 +28,5 @@ personaB.join()
 personaC.join()
 
 print("\nDocumento final:", documento)
+
+# enlace: https://onlinegdb.com/ASg2AHEJT
