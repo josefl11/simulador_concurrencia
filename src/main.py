@@ -1,5 +1,9 @@
-import threading # hilos de usuarios
-import time # tiempo real de escritura
+import threading #hilos de usuarios-concurrencia
+import time #tiempo real de escritura
+import queue #cola de tareas-organizacion de procesos
+import so #interaccion con el sistema operativo 
+
+
 
 documento = ""  # documento compartido
 lock=threading.Lock() # asegura que un solo hilo se ejecute en el momento dado
