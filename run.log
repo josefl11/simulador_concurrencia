@@ -1,1 +1,132 @@
+Sebastian,doc1,INICIO
+Sebastian,doc1,letra=H,RAM=1.5
+Pablo,doc2,INICIO
+Pablo,doc2,letra=L,RAM=3.0
+Carolina,doc1,INICIO
+Carolina,doc1,letra=A,RAM=4.5
+Sebastian,doc1,letra=o,RAM=4.5
+Pablo,doc2,letra=a,RAM=4.5
+Carolina,doc1,letra=j,RAM=4.5
+Sebastian,doc1,letra=l,RAM=4.5
+Pablo,doc2,letra=s,RAM=4.5
+Carolina,doc1,letra=u,RAM=4.5
+Pablo,doc2,letra= ,RAM=4.5
+Carolina,doc1,letra=s,RAM=4.5
+Sebastian,doc1,letra=a,RAM=4.5
+Pablo,doc2,letra=c,RAM=4.5
+Sebastian,doc1,letra=,,RAM=4.5
+Carolina,doc1,letra=t,RAM=4.5
+Pablo,doc2,letra=o,RAM=4.5
+Sebastian,doc1,letra= ,RAM=4.5
+Carolina,doc1,letra=e,RAM=4.5
+Pablo,doc2,letra=n,RAM=4.5
+Sebastian,doc1,letra=b,RAM=4.5
+Carolina,doc1,letra= ,RAM=4.5
+Pablo,doc2,letra=s,RAM=4.5
+Sebastian,doc1,letra=i,RAM=4.5
+Carolina,doc1,letra=f,RAM=4.5
+Pablo,doc2,letra=e,RAM=4.5
+Sebastian,doc1,letra=e,RAM=4.5
+Carolina,doc1,letra=i,RAM=4.5
+Pablo,doc2,letra=c,RAM=4.5
+Carolina,doc1,letra=n,RAM=4.5
+Sebastian,doc1,letra=n,RAM=4.5
+Pablo,doc2,letra=u,RAM=4.5
+Carolina,doc1,letra=a,RAM=4.5
+Sebastian,doc1,letra=v,RAM=4.5
+Pablo,doc2,letra=e,RAM=4.5
+Carolina,doc1,letra=n,RAM=4.5
+Sebastian,doc1,letra=e,RAM=4.5
+Pablo,doc2,letra=n,RAM=4.5
+Carolina,doc1,letra=c,RAM=4.5
+Sebastian,doc1,letra=n,RAM=4.5
+Pablo,doc2,letra=c,RAM=4.5
+Carolina,doc1,letra=i,RAM=4.5
+Sebastian,doc1,letra=i,RAM=4.5
+Pablo,doc2,letra=i,RAM=4.5
+Carolina,doc1,letra=e,RAM=4.5
+Sebastian,doc1,letra=d,RAM=4.5
+Pablo,doc2,letra=a,RAM=4.5
+Carolina,doc1,letra=r,RAM=4.5
+Sebastian,doc1,letra=o,RAM=4.5
+Pablo,doc2,letra=s,RAM=4.5
+Carolina,doc1,letra=o,RAM=4.5
+Sebastian,doc1,letra=s,RAM=4.5
+Pablo,doc2,letra= ,RAM=4.5
+Carolina,doc1,letra= ,RAM=4.5
+Sebastian,doc1,letra= ,RAM=4.5
+Pablo,doc2,letra=d,RAM=4.5
+Carolina,doc1,FIN
+Alejandro,doc3,INICIO
+Alejandro,doc3,letra=A,RAM=4.5
+Sebastian,doc1,letra=a,RAM=4.5
+Pablo,doc2,letra=e,RAM=4.5
+Alejandro,doc3,letra=p,RAM=4.5
+Sebastian,doc1,letra= ,RAM=4.5
+Pablo,doc2,letra=l,RAM=4.5
+Alejandro,doc3,letra=u,RAM=4.5
+Sebastian,doc1,letra=m,RAM=4.5
+Pablo,doc2,letra= ,RAM=4.5
+Alejandro,doc3,letra=n,RAM=4.5
+Sebastian,doc1,letra=i,RAM=4.5
+Pablo,doc2,letra=c,RAM=4.5
+Alejandro,doc3,letra=t,RAM=4.5
+Sebastian,doc1,letra= ,RAM=4.5
+Pablo,doc2,letra=a,RAM=4.5
+Alejandro,doc3,letra=e,RAM=4.5
+Sebastian,doc1,letra=b,RAM=4.5
+Pablo,doc2,letra=m,RAM=4.5
+Alejandro,doc3,letra=s,RAM=4.5
+Sebastian,doc1,letra=l,RAM=4.5
+Pablo,doc2,letra=b,RAM=4.5
+Alejandro,doc3,letra= ,RAM=4.5
+Sebastian,doc1,letra=o,RAM=4.5
+Pablo,doc2,letra=i,RAM=4.5
+Alejandro,doc3,letra=e,RAM=4.5
+Sebastian,doc1,letra=g,RAM=4.5
+Pablo,doc2,letra=o,RAM=4.5
+Alejandro,doc3,letra=s,RAM=4.5
+Sebastian,doc1,FIN
+Pablo,doc2,letra= ,RAM=3.0
+Alejandro,doc3,letra=e,RAM=3.0
+Pablo,doc2,letra=c,RAM=3.0
+Alejandro,doc3,letra=n,RAM=3.0
+Pablo,doc2,letra=l,RAM=3.0
+Alejandro,doc3,letra=c,RAM=3.0
+Pablo,doc2,letra=i,RAM=3.0
+Alejandro,doc3,letra=i,RAM=3.0
+Pablo,doc2,letra=m,RAM=3.0
+Alejandro,doc3,letra=a,RAM=3.0
+Pablo,doc2,letra=a,RAM=3.0
+Alejandro,doc3,letra=l,RAM=3.0
+Pablo,doc2,letra=t,RAM=3.0
+Alejandro,doc3,letra=e,RAM=3.0
+Pablo,doc2,letra=i,RAM=3.0
+Alejandro,doc3,letra=s,RAM=3.0
+Pablo,doc2,letra=c,RAM=3.0
+Alejandro,doc3,letra= ,RAM=3.0
+Pablo,doc2,letra=o,RAM=3.0
+Alejandro,doc3,letra=a,RAM=3.0
+Pablo,doc2,letra= ,RAM=3.0
+Alejandro,doc3,letra=l,RAM=3.0
+Pablo,doc2,letra=e,RAM=3.0
+Alejandro,doc3,letra=g,RAM=3.0
+Pablo,doc2,letra=n,RAM=3.0
+Alejandro,doc3,letra=e,RAM=3.0
+Pablo,doc2,letra= ,RAM=3.0
+Alejandro,doc3,letra=b,RAM=3.0
+Pablo,doc2,letra=e,RAM=3.0
+Alejandro,doc3,letra=r,RAM=3.0
+Pablo,doc2,letra=l,RAM=3.0
+Alejandro,doc3,letra=a,RAM=3.0
+Pablo,doc2,letra= ,RAM=3.0
+Alejandro,doc3,letra=:,RAM=3.0
+Pablo,doc2,letra=m,RAM=3.0
+Alejandro,doc3,letra= ,RAM=3.0
+Pablo,doc2,letra=u,RAM=3.0
+Alejandro,doc3,FIN
+Pablo,doc2,letra=n,RAM=1.5
+Pablo,doc2,letra=d,RAM=1.5
+Pablo,doc2,letra=o,RAM=1.5
+Pablo,doc2,FIN
 
