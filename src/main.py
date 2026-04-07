@@ -3,13 +3,16 @@ import time
 import queue
 import os
 
+open("run.log", "w").close()#limpiar log al inicio
+
 #CONFIGURACION:
 RAM_TOTAL = 100 # MB
 ram_usada = 0
-memoria_letra = 1.5
+memoria_letra = 1.5 # MB
 espera_memoria = 0
 ram_maxima = 0
 uso_ram_usuario = {}
+usuario_pico = ""
 
 #DOCUMENTOS:
 documentos = {
@@ -37,13 +40,15 @@ def log(mensaje):
 
 #WORKER
 def worker(nombre_hilo):
-    global ram_usada, espera_memoria, ram_maxima
+    global ram_usada, espera_memoria, ram_maxima, usuario_pico
 
     while True:
         try:
             nombre, texto, doc = cola.get_nowait()
         except queue.Empty:
             return
+        with lock:
+            log(f"{nombre},{doc},INICIO")
 
         for letra in texto:
 
@@ -52,7 +57,9 @@ def worker(nombre_hilo):
                 with lock:
                     if ram_usada + memoria_letra <= RAM_TOTAL:
                         ram_usada += memoria_letra
-                        ram_maxima = max(ram_maxima, ram_usada)
+                        if ram_usada > ram_maxima:
+                            ram_maxima = ram_usada
+                            usuario_pico = nombre
                         
                         #REGISTRAR USO DE RAM POR USUARIO
                         uso_ram_usuario[nombre] = uso_ram_usuario.get(nombre, 0) + memoria_letra
@@ -76,6 +83,9 @@ def worker(nombre_hilo):
 
         print(f"{nombre} terminó en {doc}")
         cola.task_done()
+        
+        with lock:
+            log(f"{nombre},{doc},FIN")
 
 #HILOS:
 WORKERS = 3
@@ -90,6 +100,8 @@ for l in hilos:
 
 for l in hilos:
     l.join()
+    
+cola.join()
 
 #RESULTADOS:
 os.close(fd)
@@ -107,6 +119,7 @@ print(f"RAM TOTAL: {RAM_TOTAL} MB")
 print(f"Memoria por letra: {memoria_letra} MB")
 print(f"Workers: {WORKERS}")
 print(f"RAM máxima usada: {ram_maxima}")
+print(f"Mayor pico de RAM: {ram_maxima} MB (usuario: {usuario_pico})")
 if uso_ram_usuario:
     usuario_top = max(uso_ram_usuario, key=uso_ram_usuario.get)
     print(f"Usuario que mas RAM utilizo: {usuario_top}({uso_ram_usuario[usuario_top]}MB)")
@@ -117,12 +130,12 @@ if espera_memoria > 0:
 else:
     print("No hubo espera por memoria")
 
-open("run.log", "w").close()
-
 #GUARDAR ARCHIVOS:
 for doc, contenido in documentos.items():
     with open(f"{doc}.txt", "w") as f:
         f.write(contenido)
+
+#enlance del codigo: https://onlinegdb.com/NV8TeuWil
 
 #GUARDAR ARCHIVOS:
 for doc, contenido in documentos.items():
