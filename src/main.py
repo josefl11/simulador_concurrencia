@@ -4,11 +4,12 @@ import queue
 import os
 
 #CONFIGURACION:
-RAM_TOTAL = 60  # MB
+RAM_TOTAL = 100 # MB
 ram_usada = 0
-memoria_letra = 2
+memoria_letra = 1.5
 espera_memoria = 0
 ram_maxima = 0
+uso_ram_usuario = {}
 
 #DOCUMENTOS:
 documentos = {
@@ -52,6 +53,9 @@ def worker(nombre_hilo):
                     if ram_usada + memoria_letra <= RAM_TOTAL:
                         ram_usada += memoria_letra
                         ram_maxima = max(ram_maxima, ram_usada)
+                        
+                        #REGISTRAR USO DE RAM POR USUARIO
+                        uso_ram_usuario[nombre] = uso_ram_usuario.get(nombre, 0) + memoria_letra
                         break
                     else:
                         espera_memoria += 1
@@ -103,6 +107,9 @@ print(f"RAM TOTAL: {RAM_TOTAL} MB")
 print(f"Memoria por letra: {memoria_letra} MB")
 print(f"Workers: {WORKERS}")
 print(f"RAM máxima usada: {ram_maxima}")
+if uso_ram_usuario:
+    usuario_top = max(uso_ram_usuario, key=uso_ram_usuario.get)
+    print(f"Usuario que mas RAM utilizo: {usuario_top}({uso_ram_usuario[usuario_top]}MB)")
 print(f"Eventos de espera por memoria: {espera_memoria}")
 
 if espera_memoria > 0:
@@ -111,6 +118,11 @@ else:
     print("No hubo espera por memoria")
 
 open("run.log", "w").close()
+
+#GUARDAR ARCHIVOS:
+for doc, contenido in documentos.items():
+    with open(f"{doc}.txt", "w") as f:
+        f.write(contenido)
 
 #GUARDAR ARCHIVOS:
 for doc, contenido in documentos.items():
