@@ -17,16 +17,25 @@ documento = {
 
 #cola de tareas__________________________________
 cola = queue.Queue()
+#guarda tareas pendoentes 
+cola.put(("Sebastian", "Hola, bienvenidos a mi block", "doc1"))
+cola.put(("Carolina", "Ajuste financieron 04/04/2027", "doc1"))
+cola.put(("Pablo", "Las consecuencias del cambio\n climatico en el mundo", "doc2"))
+cola.put(("Alejandro", "Apuntes ensenciales para\nsaber todo sobre base de datos", "doc3"))
 
 lock=threading.Lock() # asegura que un solo hilo se ejecute en el momento dado
-def usuario(nombre, texto):
-    global documento
-    for letra in texto:
+
+#log a nivel del sistema operativo______________
+fd = os.pen("run.log", os.O_CREAT | os.O_APPEND | os.O_WRONLY, 0o644) #simulan multiples paginas
+
+#worker es quien ejecutara los hilos____________
+def worker(nombre_hilo):
+    nombre, texto, doc = cola.get_nowait()
+    if ram_usada + memoria_letra <=  RAM_TOTAL: #decide si se puede ejecutar
+        espera_men += 1 #cuenta bloqueos
         with lock:
-            documento += letra
-            print(f"{nombre} escribió: {letra}")
-        time.sleep(0.2)
-    print(f"\n'{nombre} terminó de escribir'.\n")
+            documentos[lock] = letra #solo un hilo podra escribir a la vez
+        time.sleep(0.4)
 
 # hilos para cada usuario
 personaA = threading.Thread(target=usuario, args=("Sebastian", "Me gusta jugar básquet"))
