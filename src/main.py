@@ -3,9 +3,21 @@ import time #tiempo real de escritura
 import queue #cola de tareas-organizacion de procesos
 import so #interaccion con el sistema operativo 
 
+#configuracion de memoria_______________________
+RAM_TOTAL = 60 #mb megabytes
+ram_usada = 0 #memoria actual de uso
+memoria_letra = 2 #consumo por cada operacion
+espera_memoria = 0 #proceso en espera
+ram_maxima = 0 #maximo uso alcanzado
 
+#documentos compartidos__________________________
+documento = {
+    "doc1":"", "doc2":"", "doc3":""
+}
 
-documento = ""  # documento compartido
+#cola de tareas__________________________________
+cola = queue.Queue()
+
 lock=threading.Lock() # asegura que un solo hilo se ejecute en el momento dado
 def usuario(nombre, texto):
     global documento
