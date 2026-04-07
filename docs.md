@@ -1,43 +1,103 @@
-# Documentación – Simulador de Documento Compartido en tiempo real
+# Documentación Técnica
 
-## Objetivo
-Simular la edición concurrente de un documento compartido utilizando hilos en el lenguaje Python.
-Demostrar cómo varios usuarios pueden escribir al mismo tiempo sobre un mismo recurso compartido.
+## Descripción
 
-## Descripción del funcionamiento
-El programa crea una variable global llamada documento, la cual sera nuestro archivo compartido.
-Cada usuario editor del documento se representa por un hilo (threading.Thread).
+El sistema simula múltiples usuarios editando documentos de forma concurrente, utilizando hilos en Python. Se controla el acceso a memoria y recursos compartidos.
 
-Cada hilo ejecuta la función usuario(nombre, texto), que:
-- Recorre el texto letra por letra.
-- Agrega cada letra al documento compartido.
-- Muestra en pantalla qué usuario escribió cada letra.
-- Simulación de tiempo real com time.sleep().
+---
 
-Debido a que los hilos se ejecutan de manera concurrente, el texto final puede aparecer mezclado.
+## Concurrencia
 
-## Tecnologías utilizadas
+Se implementa con:
 
-- Python 3
-- Módulo threading
-- Módulo time
+- threading.Thread → crea múltiples hilos
+- queue.Queue → organiza tareas
 
-## Conceptos aplicados
-### Hilos (Threads):
-Permiten ejecutar múltiples tareas de forma simultánea dentro de un mismo programa.
+Cada hilo representa un usuario que ejecuta tareas en paralelo.
 
-### Recurso compartido:
-La variable documento es utilizada por todos los hilos.
+---
 
-### Concurrencia:
-Los hilos se ejecutan al mismo tiempo, lo que provoca que el orden de escritura no sea predecible.
+## Sincronización
 
-### Condición de carrera:
-Ocurre cuando varios hilos acceden y modifican un mismo recurso sin sincronización.
+Se utiliza:
 
-## Resultados
+- threading.Lock()
 
-El programa muestra cómo el texto se mezcla debido a la concurrencia.
+Protege:
+- Acceso a memoria (RAM)
+- Escritura en documentos
+- Registro en el log
+
+Evita condiciones de carrera.
+
+---
+
+##  Gestión de Memoria
+
+Se simula RAM con:
+
+- RAM_TOTAL → memoria disponible
+- ram_usada → memoria actual
+- memoria_letra → consumo por operación
+- espera_memoria → procesos en espera
+- ram_maxima → pico de uso
+
+### Funcionamiento:
+
+1. El hilo intenta usar memoria
+2. Si hay → ejecuta
+3. Si no → espera
+4. Luego libera memoria
+
+---
+
+## Métricas
+
+El sistema calcula:
+
+- RAM máxima usada
+- Usuario que más RAM consumió
+- Usuario que generó el pico de memoria
+- Eventos de espera
+
+---
+
+## Almacenamiento
+
+Se utilizan archivos:
+
+- run.log → registro de ejecución
+- doc1.txt, doc2.txt, doc3.txt → documentos finales
+
+También se usan funciones del sistema operativo:
+
+- os.open
+- os.write
+- os.close
+
+---
+
+## Log del sistema
+
+Formato:
+
+usuario,documento,evento,RAM
+
+Ejemplo:
+
+Sebastian,doc1,letra=H,RAM=1.5
+
+---
+
+## Conclusión
+
+El sistema implementa:
+
+- Concurrencia real
+- Sincronización con exclusión mutua
+- Simulación de memoria
+- Uso de archivos como evidencia
+
 Cada ejecución puede generar un orden diferente.
 El documento final contiene la combinación de todo lo escrito por los usuarios.
 
