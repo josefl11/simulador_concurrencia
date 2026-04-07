@@ -136,8 +136,3 @@ for doc, contenido in documentos.items():
         f.write(contenido)
 
 #enlance del codigo: https://onlinegdb.com/NV8TeuWil
-
-#GUARDAR ARCHIVOS:
-for doc, contenido in documentos.items():
-    with open(f"{doc}.txt", "w") as f:
-        f.write(contenido)
