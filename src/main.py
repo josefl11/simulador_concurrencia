@@ -1,57 +1,118 @@
-import threading #hilos de usuarios-concurrencia
-import time #tiempo real de escritura
-import queue #cola de tareas-organizacion de procesos
-import so #interaccion con el sistema operativo 
+import threading
+import time
+import queue
+import os
 
-#configuracion de memoria_______________________
-RAM_TOTAL = 60 #mb megabytes
-ram_usada = 0 #memoria actual de uso
-memoria_letra = 2 #consumo por cada operacion
-espera_memoria = 0 #proceso en espera
-ram_maxima = 0 #maximo uso alcanzado
+#CONFIGURACION:
+RAM_TOTAL = 60  # MB
+ram_usada = 0
+memoria_letra = 2
+espera_memoria = 0
+ram_maxima = 0
 
-#documentos compartidos__________________________
-documento = {
-    "doc1":"", "doc2":"", "doc3":""
+#DOCUMENTOS:
+documentos = {
+    "doc1": "",
+    "doc2": "",
+    "doc3": ""
 }
 
-#cola de tareas__________________________________
+#COLA:
 cola = queue.Queue()
-#guarda tareas pendoentes 
-cola.put(("Sebastian", "Hola, bienvenidos a mi block", "doc1"))
-cola.put(("Carolina", "Ajuste financieron 04/04/2027", "doc1"))
-cola.put(("Pablo", "Las consecuencias del cambio\n climatico en el mundo", "doc2"))
-cola.put(("Alejandro", "Apuntes ensenciales para\nsaber todo sobre base de datos", "doc3"))
 
-lock=threading.Lock() # asegura que un solo hilo se ejecute en el momento dado
+cola.put(("Sebastian", "Hola, bienvenidos a mi blog", "doc1"))
+cola.put(("Carolina", "Ajuste financiero ", "doc1"))
+cola.put(("Pablo", "Las consecuencias del cambio climatico en el mundo", "doc2"))
+cola.put(("Alejandro", "Apuntes esenciales algebra: ", "doc3"))
 
-#log a nivel del sistema operativo______________
-fd = os.pen("run.log", os.O_CREAT | os.O_APPEND | os.O_WRONLY, 0o644) #simulan multiples paginas
+#LOCK:
+lock = threading.Lock()
 
-#worker es quien ejecutara los hilos____________
+#LOG:
+fd = os.open("run.log", os.O_CREAT | os.O_APPEND | os.O_WRONLY, 0o644)
+
+def log(mensaje):
+    os.write(fd, (mensaje + "\n").encode())
+
+#WORKER
 def worker(nombre_hilo):
-    nombre, texto, doc = cola.get_nowait()
-    if ram_usada + memoria_letra <=  RAM_TOTAL: #decide si se puede ejecutar
-        espera_men += 1 #cuenta bloqueos
-        with lock:
-            documentos[lock] = letra #solo un hilo podra escribir a la vez
-        time.sleep(0.4)
+    global ram_usada, espera_memoria, ram_maxima
 
-# hilos para cada usuario
-personaA = threading.Thread(target=usuario, args=("Sebastian", "Me gusta jugar básquet"))
-personaB = threading.Thread(target=usuario, args=("Carla", "Amo a los gatos"))
-personaC = threading.Thread(target=usuario, args=("Stiven", "Hola para todos"))
+    while True:
+        try:
+            nombre, texto, doc = cola.get_nowait()
+        except queue.Empty:
+            return
 
-# iniciamos los hilos
-personaA.start()
-personaB.start()
-personaC.start()
+        for letra in texto:
 
-# esperamos a que terminen
-personaA.join()
-personaB.join()
-personaC.join()
+            #CONTROL DE MEMORIA
+            while True:
+                with lock:
+                    if ram_usada + memoria_letra <= RAM_TOTAL:
+                        ram_usada += memoria_letra
+                        ram_maxima = max(ram_maxima, ram_usada)
+                        break
+                    else:
+                        espera_memoria += 1
 
-print("\nDocumento final:", documento)
+                time.sleep(0.05)
 
-# enlace: https://onlinegdb.com/ASg2AHEJT
+            #SECCION CRITICA
+            with lock:
+                documentos[doc] += letra
+                print(f"[{nombre_hilo}] {nombre} escribió '{letra}' en {doc}")
+                log(f"{nombre},{doc},letra={letra},RAM={ram_usada}")
+
+            time.sleep(0.1)
+
+            #LIBERAR MEMORIA
+            with lock:
+                ram_usada -= memoria_letra
+
+        print(f"{nombre} terminó en {doc}")
+        cola.task_done()
+
+#HILOS:
+WORKERS = 3
+
+hilos = [
+    threading.Thread(target=worker, args=(f"T{i+1}",))
+    for i in range(WORKERS)
+]
+
+for l in hilos:
+    l.start()
+
+for l in hilos:
+    l.join()
+
+#RESULTADOS:
+os.close(fd)
+
+print("\n------ RESULTADO FINAL ------")
+for doc, contenido in documentos.items():
+    print(f"{doc}: {contenido}")
+
+print("\n--- CONTENIDO DEL LOG ---")
+with open("run.log", "r") as f:
+    print(f.read())
+
+print("\n--- CONFIGURACIÓN ---")
+print(f"RAM TOTAL: {RAM_TOTAL} MB")
+print(f"Memoria por letra: {memoria_letra} MB")
+print(f"Workers: {WORKERS}")
+print(f"RAM máxima usada: {ram_maxima}")
+print(f"Eventos de espera por memoria: {espera_memoria}")
+
+if espera_memoria > 0:
+    print("Hubo procesos en espera por falta de memoria")
+else:
+    print("No hubo espera por memoria")
+
+open("run.log", "w").close()
+
+#GUARDAR ARCHIVOS:
+for doc, contenido in documentos.items():
+    with open(f"{doc}.txt", "w") as f:
+        f.write(contenido)
